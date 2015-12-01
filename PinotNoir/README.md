@@ -13,6 +13,6 @@ Run 'npm install' in the the PinoNoir folder to install all dependencies
 To start the server, execute the file 'PinotNoirServer.js' in your node context.
 
 ### Usage
-Open a browser (Firefox is recommended) and browse to http://127.0.0.1:3030/html/pcp_simul.html
+Open a browser (Firefox is recommended) and browse to http://127.0.0.1:3030/html/flowmanager_simul.html
 to get to your GPII/Flowmanger simulation. 
 
