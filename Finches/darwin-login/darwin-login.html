@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<template id="binput">
+    <style>
+        .outer {
+            width: 13em;
+            text-align: center;
+        }
+
+        .outer span{
+            color: lightslategrey;
+        }
+
+        #login{
+            border: 2px solid #000000;
+            border-radius: 1em;
+
+            height: 100%;
+        }
+    </style>
+    <div class="outer">
+        <div>
+            <span>Login</span>
+        </div>
+        <section id="login">
+            <label for="username" style="visibility: hidden">Benutzername</label>
+            <input id="username" name="username"  placeholder="Benutzername" type="text"/>
+
+            <label for="password" style="visibility: hidden">Passwort</label>
+            <input id="password" name="password" placeholder="Passwort" type="password"/>
+
+            <label for="loginb" style="visibility: hidden">Login Button, klicken um sich einzuloggen</label>
+            <input id="loginb" name="loginb" value="Login" type="button"/>
+        </section>
+        <div class="content">
+            <content></content>
+        </div>
+    </div>
+</template>
+
+<template id="cinput">
+    <style>
+        .outer {
+            border: 2px solid green;
+            border-radius: 1em;
+            text-align: left;
+        }
+
+        .outer h4{
+            color: green;
+        }
+
+        #login input{
+            height: 2em;
+            width: 5em;
+            outline: double;
+            outline-color: red;
+        }
+
+        #help input{
+            height: 4em;
+            width: 10em;
+
+        }
+
+        .login{
+            margin-top: 2em;
+        }
+
+    </style>
+    <div class="outer">
+        <div>
+            <h4>Tragen Sie hier ihre Benutzerdaten ein, um den Dienst auf dieser Webseite zu nutzen </h4>
+        </div>
+        <section id="login">
+            <label for="username">Benutzername</label>
+            <input id="username" name="username"  type="text"/>
+
+            <label for="password">Passwort</label>
+            <input id="password" name="password"  type="password"/>
+            <br>
+           <section class="login">
+            <label for="loginb" >Login Button, klicken um sich einzuloggen</label>
+            <input id="loginb" name="loginb" value="Login" type="button"/>
+           </section>
+        </section>
+        <section id="help">
+            <div>
+                <h4>Klicken Sie auf diese Schaltfäche, wenn Sie unsicher sind und einen Bekannten um Rat fragen möchten</h4>
+            </div>
+            <label for="helpbutton">Passwort</label>
+            <input id="helpbutton" name="helpbutton" onclick="alert('Frage einen Bekannten ... ')" value="Frage Bekannten" type="button"/>
+        </section>
+        <div class="content">
+            <content>
+                <!-- label for="username">username</label -->
+
+            </content>
+        </div>
+    </div>
+</template>
+
+<script type="text/javascript">
+
+    document.MyStuff = document.MyStuff || {};
+
+    document.MyStuff.f = {};
+
+    var t  =     document.MyStuff.f;
+
+
+
+    t.mytestTemp = document.querySelector('link[href="../darwin-finches/darwin-login/darwin-login.html"]');
+    t._import = t.mytestTemp.import;
+
+        var _myStuff = document.MyStuff;
+
+    t.b_input_proto =  Object.create(HTMLElement.prototype, {
+            createdCallback: {
+                value: function () {
+                    this.shadow = this.createShadowRoot();
+                    var template = t._import.querySelector('#binput');
+                    var clone = document.importNode(template.content, true);
+                    _myStuff.shadow = this.shadow;
+                    this.shadow.appendChild(clone);
+                }
+            },
+            attachedCallback: {
+                value: function () {
+                    console.dir('@foo (A) = '+this.getAttribute('foo'));
+
+                    var content = this.shadow.querySelector('#login');
+                    console.dir(content);
+                    var loginb = content.querySelector('#loginb');
+                    console.dir(loginb);
+                    var loginHandler = this.getAttribute('loginHandler');
+                    loginb.addEventListener('click',window[loginHandler] , true)
+                }
+            },
+            updateClickHandlerComponent: {
+                value : function(S_nameOFListener) {
+                    var content = this.shadow.querySelector('#login');
+                    var loginHandler = this.getAttribute('loginHandler');
+
+                    content.querySelector('#loginb')
+                            .addEventListener('click', window[loginHandler] , true)
+                }
+            },
+            updateTheShadowDOM: {
+                value : function(querySelectorOfnewShadowDOMlement) {
+                    var template = t._import.querySelector(querySelectorOfnewShadowDOMlement);
+                    var clone = document.importNode(template.content, true);
+
+                    while (this.shadow.hasChildNodes()) {
+                        this.shadow.removeChild(this.shadow.lastChild);
+                    }
+                 this.shadow.appendChild(clone);
+                }
+            }
+        });
+
+
+        _myStuff.binput = document.registerElement('darwin-login', {
+            prototype: t.b_input_proto
+        });
+
+</script>
+</html>
+

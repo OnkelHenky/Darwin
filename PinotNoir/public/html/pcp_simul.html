@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>PCP Simulation</title>
+    <!-- setting a proper encoding -->
+    <meta charset="UTF-8">
+    <!-- link rel="stylesheet" href="/stylesheets/style.css" -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/javascripts/os_simul.js"></script>
+</head>
+<body>
+    <h1>PCP</h1>
+    <section id="pcpPreferences">
+        <header>
+            <hr/>
+            <h5>Update Method</h5>
+        </header>
+        <label for="updateAuto">Automatically</label>
+        <input type="radio" id="updateAuto" name="updateMethode" checked>
+        <label for="updateMan">Manually</label>
+        <input type="radio" id="updateMan" name="updateMethode">
+    </section>
+    <section id="fontSettings">
+        <header>
+            <hr/>
+            <h3>Font Settings</h3>
+        </header>
+           <section id="fontsize">
+                <label for="fntsize">Select font size (em):</label>
+                <input id="fntsize"  type="number" name="fontSize" placeholder="enter new font size" value="1"/>
+           </section>
+           <section id="fontfamily">
+             <label for="fntfamily">Select font family:</label>
+               <select id="fntfamily" name="fontFamily">
+                 <option value="times">Times</option>
+                 <option value="arial">Arial</option>
+                 <option value="fantasy">Fantasy</option>
+                 <option value="monospace">Monospace</option>
+               </select>
+           </section>
+    </section>
+    <section id="colorSettings">
+        <header>
+            <hr/>
+            <h3>Color Settings</h3>
+        </header>
+           <section id="backgroundColor">
+                <label for="bckColor">Select the background Color:</label>
+                <input id="bckColor"  name="backgroundColor" type="color" value="#ffffff"/>
+           </section>
+           <section id="textColor">
+             <label for="txtcolor">Select the text Color:</label>
+             <input id="txtcolor" name="textColor"  type="color"/>
+           </section>
+    </section>
+
+    <section>
+        <header>
+            <hr/>
+            <h3>Save Settings Manually</h3>
+        </header>
+        <p>
+            <label for="update_button">Publish (save) settings, if manually update is selected</label>
+            <br/>
+            <input id="update_button" type="button" value="Publish Settings">
+        </p>
+        <hr/>
+    </section>
+
+    <section>
+        <header>
+            <hr/>
+            <h3>GPII WebComponent Demo</h3>
+        </header>
+        <p>
+            <label for="GPIIWebDome">Select font family:</label>
+            <select id="GPIIWebDome" name="GPIIWebDome">
+                <option value="anna">Anna</option>
+                <option value="paul">Paul</option>
+                <option value="hans">Hans</option>
+            </select>
+        </p>
+        <hr/>
+    </section>
+</body>
+</html>
