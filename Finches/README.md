@@ -1,3 +1,3 @@
-# Darwin
-Javascript framework for adaptive Web Components with GPII support
-The components in core describe the framework itself
+# Finches
+The 'Finches' are a basic set of components build with Darwin
+
