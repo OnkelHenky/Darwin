@@ -1,5 +1,5 @@
-/PinotNoir/node_modules
 # Created by .ignore support plugin (hsz.mobi)
+
 
 
 ### Windows template
@@ -53,6 +53,9 @@ Temporary Items
 
 ## Directory-based project format:
 .idea/
+
+node_modules/
+
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
