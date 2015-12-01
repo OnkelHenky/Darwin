@@ -1,3 +1,3 @@
 # Finches
-The 'Finches' are a basic set of components build with Darwin
+The 'Finches' are a basic set of components built with Darwin
 
