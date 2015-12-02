@@ -75,12 +75,12 @@
                 console.dir(data);
                 console.dir(that);
 
-                if(data.hasOwnProperty('GPIIWebDome')){
-                    var user = data.GPIIWebDome;
+                if(data.hasOwnProperty('http://registry.gpii.net/common/contentRep')){
+                    var _descType = data['http://registry.gpii.net/common/contentRep'];
 
-                    if('anna' === user){
+                    if('descText' === _descType){
                         that.updateTheShadowDOM('#descText');
-                    }else if('paul' === user){
+                    }else if('descVideo' === _descType){
                         that.updateTheShadowDOM('#descVideo');
                     }else {
 
