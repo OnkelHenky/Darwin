@@ -8,33 +8,14 @@ $(document).ready(function()
 {
     var socket = io.connect('http://127.0.0.1:3030');
 
-    $("#fntsize,#fntfamily,#bckColor,#txtcolor,#GPIIWebDome").change(function(event){
-        if($("#updateAuto").is(':checked')){
-          console.log('updateAuto = checked. New settings =  '+$(this).attr('name')+", value = "+$(this).val());
-          var typeOfSetting = $(this).attr('name');
-          var valueOfSetting = $(this).val();
-          var updateObj= JSON.parse('{"'+typeOfSetting+'": "'+valueOfSetting+'"}');
-          console.dir(updateObj);
-          socket.emit('pushUIUpdate',updateObj);
-        }
+    $(".personas").click(function(event){
+          $(".personas").attr( "class", "personas border_color_black");
+          $(this).attr( "class", "personas border_color_green");
+          var _updateObj= JSON.parse('{"selected_persona": "'+$(this).attr('data-persona')+'"}');
+          console.dir(_updateObj);
+          socket.emit('pushUIUpdate',_updateObj);
      });
 
-    $("#update_button").click(function(event){
-        if($("#updateMan").is(':checked')){
-            var updateObjStr = '{';
-
-              updateObjStr += '"fontSize":' + '"'+$("#fntsize").val()+'"';
-              updateObjStr += ',"fontFamily":' + '"'+ $("#fntfamily").val()+'"';
-              updateObjStr += ',"backgroundColor":' +'"'+  $("#bckColor").val()+'"';
-              updateObjStr += ',"textColor":' + '"'+ $("#txtcolor").val()+'"';
-
-            updateObjStr += '}';
-
-            var updateObj= JSON.parse(updateObjStr);
-            console.dir(updateObj);
-            socket.emit('pushUIUpdate',updateObj);
-        }
-    });
 });
 
 
