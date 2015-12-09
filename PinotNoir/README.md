@@ -4,6 +4,10 @@ Test server for simulating a local installed GPII backend (flowmanager)
 This component will become obsolete if the connection to real flowmanager can be established 
 for example vie the chrome extension. 
 
+The flowmanger simulation provides several "Personas" with static preference sets. 
+By selecting a Persona the information of the corresponding preference set is send the the application running the 
+Dariwn application running in the web browser.
+
 ## Installation
  
 * Install node.js ad npm from [https://nodejs.org/en/](https://nodejs.org/en/).
