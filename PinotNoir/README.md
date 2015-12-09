@@ -4,15 +4,18 @@ Test server for simulating a local installed GPII backend (flowmanager)
 This component will become obsolete if the connection to real flowmanager can be established 
 for example vie the chrome extension. 
 
-### Installation
+## Installation
  
-To use this service, install node.js and npm from https://nodejs.org/en/
+* Install node.js ad npm from [https://nodejs.org/en/](https://nodejs.org/en/).
 
-Run 'npm install' in the the PinoNoir folder to install all dependencies
+* Clone this repository 
 
-To start the server, execute the file 'PinotNoirServer.js' in your node context.
+* To install all dependencies run `npm install` from inside the the PinoNoir folder 
 
-### Usage
-Open a browser (Firefox is recommended) and browse to http://127.0.0.1:3030/html/flowmanager_simul.html
-to get to your GPII/Flowmanger simulation. 
+* To start the server, execute the file `PinotNoirServer.js` in your node context.
+
+## Usage
+Open a browser (Firefox is recommended) and browse to `http://127.0.0.1:3030/html/flowmanager_simul.html`
+to get to the GPII/Flowmanger simulation. 
+
 
