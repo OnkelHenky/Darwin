@@ -5,7 +5,7 @@ JavaScript framework for adaptive Web Components with GPII support
 
 ## Licence
 
-The code of Darwin is available under the [Apache 2.0 License](https://github.com/REMEXLabs/Darwin/blob/master/License.txt).
+The code of Darwin is available under the [Apache 2.0 License](https://github.com/REMEXLabs/Darwin/blob/master/LICENSE.txt).
 
 ## Funding Acknowledgement
 
