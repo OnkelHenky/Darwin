@@ -25,4 +25,8 @@ Dariwn application running in the web browser. A sample Darwin appliation can be
 Browse to `[Path_To_Darwin_Repo]Darwin_Testbed/html/` and open the `index.html` file 
 in a browser, which is capable of running web components - A up-to-date version of Chrome is recommended.  
 
+## Licence
+
+The code of PinotNoir is available under the [Apache 2.0 License](https://github.com/REMEXLabs/Darwin/blob/master/PinotNoir/LICENSE_PinotNoir.txt).
+
 
