@@ -8,6 +8,8 @@ The flowmanger simulation provides several "Personas" with static preference set
 By selecting a Persona the information of the corresponding preference set is send the the application running the 
 Dariwn application running in the web browser.
 
+A sample Darwin appliation can be fund in the 'Darwin_Testbed'.
+
 ## Installation
  
 * Install node.js ad npm from [https://nodejs.org/en/](https://nodejs.org/en/).
