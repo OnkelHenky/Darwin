@@ -4,12 +4,6 @@ Test server for simulating a local installed GPII backend (flowmanager)
 This component will become obsolete if the connection to real flowmanager can be established 
 for example vie the chrome extension. 
 
-The flowmanger simulation provides several "Personas" with static preference sets. 
-By selecting a Persona the information of the corresponding preference set is send the the application running the 
-Dariwn application running in the web browser.
-
-A sample Darwin appliation can be fund in the 'Darwin_Testbed'.
-
 ## Installation
  
 * Install node.js ad npm from [https://nodejs.org/en/](https://nodejs.org/en/).
@@ -23,5 +17,12 @@ A sample Darwin appliation can be fund in the 'Darwin_Testbed'.
 ## Usage
 Open a browser (Firefox is recommended) and browse to `http://127.0.0.1:3030/html/flowmanager_simul.html`
 to get to the GPII/Flowmanger simulation. 
+
+The flowmanger simulation provides several "Personas" with static preference sets. 
+By selecting a Persona the information of the corresponding preference set is send the the application running the 
+Dariwn application running in the web browser. A sample Darwin appliation can be fund in the `Darwin_Testbed`.
+
+Browse to `[Path_To_Darwin_Repo]Darwin_Testbed/html/` and open the `index.html` file 
+in a browser, which is capable of running web components - A up-to-date version of Chrome is recommended.  
 
 
