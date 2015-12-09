@@ -6,7 +6,7 @@ for example vie the chrome extension.
 
 ## Installation
  
-* Install node.js ad npm from [https://nodejs.org/en/](https://nodejs.org/en/).
+* Install `node.js` and `npm` from [https://nodejs.org/en/](https://nodejs.org/en/).
 
 * Clone this repository 
 
