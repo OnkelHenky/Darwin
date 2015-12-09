@@ -2,6 +2,15 @@
 
 JavaScript framework for adaptive Web Components with GPII support
 
+## Description
+
+coming soon ...
+
+
+## Usage
+A brief introduction of how to use Darwin in its current state by running the Darwin_Testbed, can be found
+in the readme file of PinotNoir - a test tool, which simulates the GPII flowmanager [https://github.com/REMEXLabs/Darwin/tree/master/PinotNoir](https://github.com/REMEXLabs/Darwin/tree/master/PinotNoir).
+
 
 ## Licence
 
