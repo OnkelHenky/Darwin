@@ -7,6 +7,7 @@
           "http://registry.gpii.net/common/language": "en-GB",
           "http://registry.gpii.net/common/fontSize": 24,
           "http://registry.gpii.net/common/contentRep": "desc_pic_support",
+          "http://registry.gpii.net/common/help": "help_button",
           "http://registry.gpii.net/common/linkAdaptation": "emphasizeLinks",
           "http://registry.gpii.net/common/highContrastEnabled": true,
           "http://registry.gpii.net/common/highContrastTheme": "white-black",

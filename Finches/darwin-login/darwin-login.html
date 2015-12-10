@@ -116,6 +116,38 @@
 
         var _myStuff = document.MyStuff;
 
+
+    function getZeConnectionToPinotServer(){
+        var that = this;
+        try{
+
+            var socket = io.connect('http://127.0.0.1:3030');
+
+            socket.on('gpii_update', function (data) {
+                console.log("getting a GPII (settings) update"+data);
+                console.dir(data);
+                console.dir(that);
+
+                if(data.hasOwnProperty('http://registry.gpii.net/common/help')){
+                    var _descType = data['http://registry.gpii.net/common/help'];
+
+                    if('help_button' === _descType){
+                        that.updateTheShadowDOM('#cinput');
+                    }else if ('no_help' === _descType){
+                        that.updateTheShadowDOM('#binput');
+                    }
+                }
+
+            });
+            console.log('Socket in der Compoenent');
+            console.dir(socket);
+        }catch(ex){
+            console.log('exception occurred ' +ex);
+
+        }
+    }
+
+
     t.b_input_proto =  Object.create(HTMLElement.prototype, {
             createdCallback: {
                 value: function () {
@@ -124,6 +156,7 @@
                     var clone = document.importNode(template.content, true);
                     _myStuff.shadow = this.shadow;
                     this.shadow.appendChild(clone);
+                    getZeConnectionToPinotServer.apply(this);
                 }
             },
             attachedCallback: {
@@ -137,7 +170,8 @@
                     var loginHandler = this.getAttribute('loginHandler');
                     loginb.addEventListener('click',window[loginHandler] , true)
                 }
-            },
+            }
+        ,
             updateClickHandlerComponent: {
                 value : function(S_nameOFListener) {
                     var content = this.shadow.querySelector('#login');
