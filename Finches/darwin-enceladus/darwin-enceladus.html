@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html>
 
-</body>
+<template id="descText">
+    <style>
+
+    </style>
+    <div class="outer">
+        <section id="textSection">
+            3cing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.  <br>
+            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>
+        </section>
+        <div class="content">
+            <content></content>
+        </div>
+    </div>
+</template>
+
+<template id="descVideo">
+    <style>
+
+    </style>
+    <div class="outer">
+        <video  autoplay controls >
+            <source src="../../Finches/darwin-description/videos/AccountNumber_Feldmann_low_ils.mp4" type="video/mp4" />
+        </video>
+        <div class="content">
+            <content>
+                <!-- label for="username">username</label -->
+
+            </content>
+        </div>
+    </div>
+</template>
+
+<script type="text/javascript">
+
+
+
+
+    document.MyStuff = document.MyStuff || {};
+
+    document.MyStuff.descr = {};
+
+
+
+    var r  =     document.MyStuff.descr;
+
+    r.mytestTemp = document.querySelector('link[href="../../Finches/darwin-description/darwin-description.html"]');
+    r._import = r.mytestTemp.import;
+
+    var _myStuff = document.MyStuff;
+
+
+    function loadTemplate (callback){
+
+        console.log('about to load the template');
+
+        var htmlImportTag = document.createElement("link");
+        htmlImportTag.rel = "import";
+        htmlImportTag.onload = function () {
+            console.log('import started/loaded!');
+            callback();
+        };
+        document.getElementsByTagName('head')[0].appendChild(htmlImportTag);
+        htmlImportTag.href = "http://127.0.0.1:3030/Remote_Finches/for_darwin-description/desc_pic_support.html";
+
+    }
+
+    function getZeConnectionToPinotServer(){
+
+        var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc";
+        var solutionId = "my.example.com";
+
+        var port = chrome.runtime.connect(extensionId);
+        port.postMessage({type: "connectionRequest", solutionId: solutionId});
+        port.onMessage.addListener(function (msg) {
+            // At this point, the extension has accepted your connection request
+            if (msg.accepted) {
+                console.log("## got an okay from the extension side, now let's wait for settings ...");
+            }
+            // Whenever your settings change, you will be notified
+            if (msg.settings) {
+                console.log("## got new settings: " + JSON.stringify(msg.settings));
+            }
+        });
+    }
+
+    r.descr_proto =  Object.create(HTMLElement.prototype, {
+        createdCallback: {
+            value: function () {
+                this.shadow = this.createShadowRoot();
+                var template = r._import.querySelector('#descText');
+                var clone = document.importNode(template.content, true);
+                _myStuff.shadow = this.shadow;
+                this.shadow.appendChild(clone);
+
+                getZeConnectionToPinotServer.apply(this);
+            }
+        },
+        updateTheShadowDOM: {
+            value : function(querySelectorOfnewShadowDOMlement) {
+
+                var template = r._import.querySelector(querySelectorOfnewShadowDOMlement);
+                var clone = document.importNode(template.content, true);
+
+                while (this.shadow.hasChildNodes()) {
+                    this.shadow.removeChild(this.shadow.lastChild);
+                }
+                this.shadow.appendChild(clone);
+            }
+        }
+    });
+
+
+    _myStuff.descr = document.registerElement('darwin-enceladus', {
+        prototype: r.descr_proto
+    });
+
+</script>
 </html>
+
