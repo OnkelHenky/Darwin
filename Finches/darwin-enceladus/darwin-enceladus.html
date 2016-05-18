@@ -22,7 +22,7 @@
    The finch implementation
 -->
 <script type="text/javascript">
-    
+
     document.enceladusComponent = document.enceladusComponent || {};
     document.enceladusComponent.descr = {};
 
@@ -32,31 +32,25 @@
 
     var _enceladusComponent_local = document.enceladusComponent;
 
-
-    function loadTemplate (callback){
-
-        console.log('about to load the template');
-        var htmlImportTag = document.createElement("link");
-        htmlImportTag.rel = "import";
-        htmlImportTag.onload = function () {
-            console.log('import started/loaded!');
-            callback();
-        };
-        document.getElementsByTagName('head')[0].appendChild(htmlImportTag);
-        htmlImportTag.href = "http://127.0.0.1:3030/Remote_Finches/for_darwin-description/desc_pic_support.html";
-
-    }
-
-    function establishConnectionToPinotNoirServer(){
+    /**
+     * This function establishes a connection to Chrome GPII extension
+     * using the extension's unique ID that is defined in the extension implementation.
+     *
+     * This function is called when the browser creates a new element (WebComponent) of typ "Enceladus"
+     * See: "createdCallback".
+     *
+     * See this URL for more information on the WebComponent lifecycle callbacks:
+     * https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements
+     *
+     */
+    function establishConnectionToTheChromeGPIIExtension(){
         var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc"; //Unique ID of the chrome extension
         var solutionId = "my.DARWIN_example.com"; //Just a simple identifier. A better one has to be defined later.
 
         var port = chrome.runtime.connect(extensionId);
         port.postMessage({type: "connectionRequest", solutionId: solutionId});
         port.onMessage.addListener(function (msg) {
-            // At this point, the extension has accepted the connection request
-            console.dir(msg);
-
+            
             if (msg.accepted) {
                 console.log("## got an okay from the extension side, now let's wait for settings ...");
             }
@@ -74,7 +68,7 @@
                 var clone = document.importNode(template.content, true);
                 _enceladusComponent_local.shadow = this.shadow;
                 this.shadow.appendChild(clone);
-                establishConnectionToPinotNoirServer.apply(this);
+                establishConnectionToTheChromeGPIIExtension.apply(this);
             }
         },
         updateTheShadowDOM: {
