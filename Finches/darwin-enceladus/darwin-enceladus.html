@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 
+<!--
+   Template of the enceladus test-finch
+-->
 <template id="descText">
     <style>
-
+     /* css style information - empty */
     </style>
     <div class="outer">
         <section id="textSection">
-            3cing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.  <br>
-            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. <br>
+           Hello, this is the content of the Enceladus-Finch, to test the connection to the chrome GPII connector
         </section>
         <div class="content">
             <content></content>
@@ -16,46 +18,24 @@
     </div>
 </template>
 
-<template id="descVideo">
-    <style>
-
-    </style>
-    <div class="outer">
-        <video  autoplay controls >
-            <source src="../../Finches/darwin-description/videos/AccountNumber_Feldmann_low_ils.mp4" type="video/mp4" />
-        </video>
-        <div class="content">
-            <content>
-                <!-- label for="username">username</label -->
-
-            </content>
-        </div>
-    </div>
-</template>
-
+<!--
+   The finch implementation
+-->
 <script type="text/javascript">
+    
+    document.enceladusComponent = document.enceladusComponent || {};
+    document.enceladusComponent.descr = {};
 
+    var _finchPrototype  = {},
+        _finchImportTag = document.querySelector('link[href="../../Finches/darwin-description/darwin-description.html"]');
+       _finchPrototype._import = _finchImportTag.import;
 
-
-
-    document.MyStuff = document.MyStuff || {};
-
-    document.MyStuff.descr = {};
-
-
-
-    var r  =     document.MyStuff.descr;
-
-    r.mytestTemp = document.querySelector('link[href="../../Finches/darwin-description/darwin-description.html"]');
-    r._import = r.mytestTemp.import;
-
-    var _myStuff = document.MyStuff;
+    var _enceladusComponent_local = document.enceladusComponent;
 
 
     function loadTemplate (callback){
 
         console.log('about to load the template');
-
         var htmlImportTag = document.createElement("link");
         htmlImportTag.rel = "import";
         htmlImportTag.onload = function () {
@@ -67,15 +47,16 @@
 
     }
 
-    function getZeConnectionToPinotServer(){
-
-        var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc";
-        var solutionId = "my.example.com";
+    function establishConnectionToPinotNoirServer(){
+        var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc"; //Unique ID of the chrome extension
+        var solutionId = "my.DARWIN_example.com"; //Just a simple identifier. A better one has to be defined later.
 
         var port = chrome.runtime.connect(extensionId);
         port.postMessage({type: "connectionRequest", solutionId: solutionId});
         port.onMessage.addListener(function (msg) {
-            // At this point, the extension has accepted your connection request
+            // At this point, the extension has accepted the connection request
+            console.dir(msg);
+
             if (msg.accepted) {
                 console.log("## got an okay from the extension side, now let's wait for settings ...");
             }
@@ -85,25 +66,21 @@
             }
         });
     }
-
-    r.descr_proto =  Object.create(HTMLElement.prototype, {
+    _finchPrototype.descr_proto =  Object.create(HTMLElement.prototype, {
         createdCallback: {
             value: function () {
                 this.shadow = this.createShadowRoot();
-                var template = r._import.querySelector('#descText');
+                var template = _finchPrototype._import.querySelector('#descText');
                 var clone = document.importNode(template.content, true);
-                _myStuff.shadow = this.shadow;
+                _enceladusComponent_local.shadow = this.shadow;
                 this.shadow.appendChild(clone);
-
-                getZeConnectionToPinotServer.apply(this);
+                establishConnectionToPinotNoirServer.apply(this);
             }
         },
         updateTheShadowDOM: {
             value : function(querySelectorOfnewShadowDOMlement) {
-
-                var template = r._import.querySelector(querySelectorOfnewShadowDOMlement);
+                var template = _finchPrototype._import.querySelector(querySelectorOfnewShadowDOMlement);
                 var clone = document.importNode(template.content, true);
-
                 while (this.shadow.hasChildNodes()) {
                     this.shadow.removeChild(this.shadow.lastChild);
                 }
@@ -112,9 +89,8 @@
         }
     });
 
-
-    _myStuff.descr = document.registerElement('darwin-enceladus', {
-        prototype: r.descr_proto
+    _enceladusComponent_local.descr = document.registerElement('darwin-enceladus', {
+        prototype: _finchPrototype.descr_proto
     });
 
 </script>
