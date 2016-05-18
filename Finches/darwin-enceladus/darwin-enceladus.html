@@ -44,33 +44,56 @@
      *
      */
     function establishConnectionToTheChromeGPIIExtension(){
-        var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc"; //Unique ID of the chrome extension
-        var solutionId = "my.DARWIN_example.com"; //Just a simple identifier. A better one has to be defined later.
+        var extensionId = "bkoobcbgaajfpjhfkahlmghbeneedodc"; /* Unique ID of the chrome extension */
+        var solutionId = "my.DARWIN_example.com"; /* Just a simple identifier. A better one has to be defined later. */
 
+        /* Connection to the chrome extension.
+         * If successful, web socket connection is established  */
         var port = chrome.runtime.connect(extensionId);
         port.postMessage({type: "connectionRequest", solutionId: solutionId});
+
+        /* Listener, which listens to massages coming from the chrome extension  */
         port.onMessage.addListener(function (msg) {
-            
             if (msg.accepted) {
                 console.log("## got an okay from the extension side, now let's wait for settings ...");
             }
-            // Whenever your settings change, you will be notified
+            /* Whenever the settings (user settings) change, the component will be notified */
             if (msg.settings) {
                 console.log("## got new settings: " + JSON.stringify(msg.settings));
             }
         });
     }
+
+    /**
+     * The WebComponent lifecycle callbacks.
+     */
     _finchPrototype.descr_proto =  Object.create(HTMLElement.prototype, {
+        /*
+         * Called after the element is created.
+         * On create the WebComponent will load to default template into the component's shadow DOM and
+         * establish a connection to the chrome extension.
+         */
         createdCallback: {
             value: function () {
+
+                /* Get the reference to the components shadow DOM. */
                 this.shadow = this.createShadowRoot();
+
+                /* Load the default shadowDOM implementation - aka. the default appearance */
                 var template = _finchPrototype._import.querySelector('#descText');
                 var clone = document.importNode(template.content, true);
                 _enceladusComponent_local.shadow = this.shadow;
                 this.shadow.appendChild(clone);
+
+                /* Establish a connection to the chrome extension. */
                 establishConnectionToTheChromeGPIIExtension.apply(this);
             }
         },
+        /*
+         * Custom function created by A.Henka and not part of the WebComponent lifecycle
+         * This function is used to update the shadowDOM of the WebComponent.
+         * This function is not needed in the Enceladus demo.
+         */
         updateTheShadowDOM: {
             value : function(querySelectorOfnewShadowDOMlement) {
                 var template = _finchPrototype._import.querySelector(querySelectorOfnewShadowDOMlement);
@@ -83,6 +106,9 @@
         }
     });
 
+    /**
+     * Register the enceladus WebComponent in the web browser as a new custom element
+     */
     _enceladusComponent_local.descr = document.registerElement('darwin-enceladus', {
         prototype: _finchPrototype.descr_proto
     });
