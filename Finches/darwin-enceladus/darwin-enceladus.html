@@ -88,21 +88,6 @@
                 /* Establish a connection to the chrome extension. */
                 establishConnectionToTheChromeGPIIExtension.apply(this);
             }
-        },
-        /*
-         * Custom function created by A.Henka and not part of the WebComponent lifecycle
-         * This function is used to update the shadowDOM of the WebComponent.
-         * This function is not needed in the Enceladus demo.
-         */
-        updateTheShadowDOM: {
-            value : function(querySelectorOfnewShadowDOMlement) {
-                var template = _finchPrototype._import.querySelector(querySelectorOfnewShadowDOMlement);
-                var clone = document.importNode(template.content, true);
-                while (this.shadow.hasChildNodes()) {
-                    this.shadow.removeChild(this.shadow.lastChild);
-                }
-                this.shadow.appendChild(clone);
-            }
         }
     });
 
