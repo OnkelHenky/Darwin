@@ -27,8 +27,8 @@
         document.enceladusComponent.descr = {};
 
         var _finchPrototype  = {},
-            _finchImportTag = document.querySelector('link[href="../../Finches/darwin-description/darwin-enceladus.html"]');
-           _finchPrototype._import = _finchImportTag.import;
+            _finchImportTag = document.querySelector('link[href="../../Finches/darwin-enceladus/darwin-enceladus.html"]');
+            _finchPrototype._import = _finchImportTag.import;
 
         var _enceladusComponent_local = document.enceladusComponent;
 
@@ -76,7 +76,7 @@
             createdCallback: {
                 value: function () {
 
-                    /* Get the reference to the components shadow DOM. */
+                    /* Get the reference to the component's shadow DOM. */
                     this.shadow = this.createShadowRoot();
 
                     /* Load the default shadowDOM implementation - aka. the default appearance */

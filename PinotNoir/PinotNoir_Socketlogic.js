@@ -6,6 +6,56 @@
 
 exports.startTheMagic = function(io){
 
+    function connectToGPIIPrefServer(io){
+
+        var socketServer = 'http://localhost:8081/browserChannel';
+
+        var io = require('socket.io-client');
+        var socket = io.connect(socketServer, {reconnect: true});
+        var solutionId = "my.DARWIN_example.com"; /* Just a simple identifier. A better one has to be defined later. */
+
+        socket.on("connect", function (data) {
+            console.log("OnConnection");
+            socket.send(solutionId);
+        });
+
+        socket.on("gpii_update", function (data) {
+            console.log("getting a GPII (settings) update"+data);
+            console.dir(data);
+            port.postMessage({settings: data});
+        });
+
+        socket.on("connectionSucceeded", function (settings) {
+            console.log("## on connectionSucceeded - got: " + JSON.stringify(settings));
+            allSettings[solutionId] = settings;
+            port.postMessage({settings: settings});
+        });
+
+        socket.on("onBrowserSettingsChanged", function (settings) {
+            console.log("onBrowserSettingsChanged: " + JSON.stringify(settings));
+            allSettings[solutionId] = settings;
+            port.postMessage({settings: settings});
+        });
+
+        socket.on("disconnect", function (request) {
+            // We can tell the website what's going on
+            console.log("## on disconnect: " + request);
+        });
+
+        socket.on("error", function (err) {
+            // We can tell the website what's going on
+            console.log("## on error: " + err);
+        });
+
+        /*
+        port.onDisconnect.addListener(function () {
+            console.log("## port has been closed - closing socket");
+            socket.disconnect();
+        }); */
+    }
+
+    connectToGPIIPrefServer(io);
+
     io.sockets.on('connection', function (socket) {
 
         console.log('On Connection');
