@@ -1,5 +1,5 @@
 # Darwin
-Note: This is a prototypical implementation to conduct some experiments for the further development of a JavaScript framework for adaptive Web Components  with GPII support. It is debrecated and no more maintained. The main concepts have been migrated to the [AWC-Core framework].(https://github.com/FraunhoferIAO/awc-core).
+Note: This is a prototypical implementation to conduct some experiments for the further development of a JavaScript framework for adaptive Web Components  with GPII support. This version is debrecated and no more maintained. The main concepts have been migrated to the [AWC-Core framework].(https://github.com/FraunhoferIAO/awc-core).
 
 ## Description
 
